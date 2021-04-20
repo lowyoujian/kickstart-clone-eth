@@ -1,4 +1,4 @@
-import provider from 'web3';
+import provider from './web3';
 const ethers = require('ethers')
 import CampaignFactory from './build/CampaignFactory.json';
 
