@@ -1,8 +1,19 @@
-import provider from './web3';
+import signerFunction from './web3';
 const ethers = require('ethers')
+let signer
+let contract
 import CampaignFactory from './build/CampaignFactory.json';
 
-console.log(provider,'asdf');
-const instance = new ethers.Contract('0x6d6E8D64ED5b409E589d273Fd7f7fBC19964271f',CampaignFactory.abi, provider)
 
-export default instance;
+// infuraProvider.getSigner();
+// console.log(`Your current ITX balance is ${balance}`)
+
+export default async function(){
+
+
+    console.log("contract at : " );
+   let signer =  await signerFunction();
+    const contract = new ethers.Contract(process.env.DEPLOYED_CONTRACT_ADDRESS,CampaignFactory.abi, signer)
+    return contract;
+        
+}

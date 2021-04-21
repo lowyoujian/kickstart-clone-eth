@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import { Card, Button } from 'semantic-ui-react';
-import instance from '../eth/factory';
+import contractFunction from '../eth/factory';
 import Layout from '../components/Layout';
 
-import 'semantic-ui-css/semantic.min.css'
 class CampaignIndex extends Component {
 
     static async getInitialProps() {
+        let instance = await contractFunction();
         const campaigns =     await instance.getDeployedCampaigns();
         return {campaigns};
     }
@@ -24,13 +24,13 @@ class CampaignIndex extends Component {
 
     render() {
         return <Layout><div>
-            
-            <h3>Open Campaigns</h3> {this.renderCampaigns()}
-        
-        <Button
+              <Button floated="right"
          content="create Campaign:"
          icon = "add circle" 
-         primary /></div></Layout>
+         primary />
+            <h3>Open Campaigns</h3> {this.renderCampaigns()}
+        
+      </div></Layout>
     }
 }
 
