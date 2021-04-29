@@ -10,10 +10,9 @@ const compiledFactory = require('./build/CampaignFactory.json');
 
 
 const deploy = async ()=> {
-    const url = "https://rinkeby.infura.io/v3/"+process.env.INFURA_PROJECT_ID;
+    const url = "https://rinkeby.infura.io/v3/"+"ec1cca45e02d4ba8bc9fcb9aab0ceab9";
     const privateKey = process.env.ETH_SECRET_KEY ;
-    var provider = new ethers.providers.JsonRpcProvider(url,"rinkeby");
-   var wallet = new ethers.Wallet(privateKey , provider);
+    var wallet = new ethers.Wallet(privateKey , provider);
     // console.log('Attempting to deploy from account ',accounts[0])
     // const result = await provider.getBlock(0)
     // console.log(result);
@@ -22,8 +21,10 @@ const deploy = async ()=> {
 
         const factory = new ethers.ContractFactory(compiledFactory.abi, compiledFactory.evm.bytecode.object, wallet)
         var contract = await factory.deploy();
-       
+        
+       console.log('console deployed at '+contract.address);
     } catch(err){
+        console.log(err)
     }
     
 }

@@ -26,6 +26,7 @@ const input = {
 
 
 fs.ensureDirSync(buildPath);
+console.log(input)
 // const { abi: interface, evm: { bytecode: { object } } }
 var result = JSON.parse(solc.compile(JSON.stringify(input))).contracts['campaign.sol']; // 
 
